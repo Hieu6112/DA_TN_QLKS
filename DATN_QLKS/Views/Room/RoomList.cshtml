@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DATN_QLKS.Models.tblLoaiPhong>
+@{
+    ViewBag.Title = "RoomList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .thumb {
+        width: 350px;
+        height: 275px;
+        background-color: transparent;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    .fh5co-card-item .fh5co-text h2, .fh5co-card-item .fh5co-text span{
+        font-family: "Lora", serif;
+        font-size: 24px;
+    }
+    .fh5co-card-item .fh5co-text h3, .fh5co-card-item .fh5co-text span {
+        font-family: "Kaushan Script", cursive;
+        font-size: 20px;
+        color: #dfa974;
+        font-weight: 700;
+    }
+    .fh5co-card-item .fh5co-text p, .fh5co-card-item .fh5co-text span{
+        color: white;
+    }
+    .room-pagination {
+        text-align: center;
+        padding-top: 20px;
+    }
+    .room-pagination a{
+        font-family: "Cabin", sans-serif;
+        font-size: 16px;
+        color: #707079;
+        border: 1px solid #EFD4B9;
+        border-radius: 2px;
+        padding: 7px 13px 5px;
+        margin-right: 7px;
+        display: inline-block;
+        transition: all 0.3s;
+    }
+</style>
+<header id="gtco-header" class="gtco-cover gtco-cover-md g-header" role="banner" style="background-image: url(/Content/Home/images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</header>
+
+<div class="gtco-section">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <h2 class="cursive-font primary-color">Loại phòng</h2>
+                <div class="">
+                    <a href="">Trang chủ</a>
+                    <span>> Loại phòng</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <a href="@Url.Action("Details","Room",new { id = item.loai_phong})">
+                        <div href="~/Content/Home/images/img_1.jpg" class="fh5co-card-item">
+                            <figure>
+                                <div class="overlay"><i class="ti-plus"></i></div>
+                                @{
+                                    String m = (item.anh);
+                                    try
+                                    {
+                                        List<String> a = Newtonsoft.Json.JsonConvert.DeserializeObject<List<String>>(m);
+                                        <div class="thumb" onclick="clickImg(@item.loai_phong)" style="background-image:url(@a[0]);" />
+                                    }
+                                    catch { }
+                                }
+                                @*<img src="~/Content/Home/images/img_1.jpg" alt="Image" class="img-responsive">*@
+                            </figure>
+                            <div class="fh5co-text">
+                                <h2>@Html.DisplayFor(modelItem => item.mo_ta)</h2>
+                                <br />
+                                <br />
+                                <h3>@Html.DisplayFor(modelItem => item.gia) VND / Ngày</h3>
+                                <br />
+                                <p><span class="price cursive-font"></span></p>
+                                <div href="@Url.Action("Details","Room",new { id = item.loai_phong})"><div class="btn btn-primary btn-block">Xem chi tiết</div></div>
+                                @*<p href="@Url.Action("Details","Room")" onclick="" class="btn btn-primary btn-block">Xem chi tiết</p>*@
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="room-pagination">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
