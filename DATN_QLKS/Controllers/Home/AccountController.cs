@@ -242,11 +242,6 @@ namespace DATN_QLKS.Controllers.Home
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
 
-                /* var message = new MailMessage();
-                 message.From = new MailAddress("tuyenkhong2001@gmail.com");
-                 message.ReplyToList.Add("tuyenkhong2001@gmail.com");
-                 message.To.Add(new MailAddress(s.email));
-                 message.Subject = "Thông báo vê việc đổi mật khẩu của bạn tại Honganperfume.com";*/
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress("longtrunghieu2000hehe@gmail.com");
                 message.To.Add(new MailAddress(s.mail));
@@ -279,6 +274,7 @@ namespace DATN_QLKS.Controllers.Home
             }
             return random;
         }
+
         public ActionResult SuaPhieuDatPhong(int? id)
         {
             tblKhachHang kh = new tblKhachHang();
