@@ -92,6 +92,7 @@
                                     @Html.PasswordFor(u => u.mat_khau, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(u => u.mat_khau)
                                 </div>
+                                <a href="@Url.Action("ForgotPassword", "Account")">Quên mật khẩu</a>
                                 <br />
                                 <input class="btn btn-primary btn-block" type="submit" value="Đăng nhập" />
                             }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using DATN_QLKS.Models;
@@ -218,6 +219,66 @@ namespace DATN_QLKS.Controllers.Home
             return View();
         }
 
+        /* Quen mk */
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string mail)
+        {
+
+            var s = db.tblKhachHangs.FirstOrDefault(x => x.mail == mail);
+            if (s != null)
+            {
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = "longtrunghieu2000hehe@gmail.com";
+                NetworkCred.Password = "newoaxxmyouvasqv";
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+
+                /* var message = new MailMessage();
+                 message.From = new MailAddress("tuyenkhong2001@gmail.com");
+                 message.ReplyToList.Add("tuyenkhong2001@gmail.com");
+                 message.To.Add(new MailAddress(s.email));
+                 message.Subject = "Thông báo vê việc đổi mật khẩu của bạn tại Honganperfume.com";*/
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("longtrunghieu2000hehe@gmail.com");
+                message.To.Add(new MailAddress(s.mail));
+                message.Subject = "Notice about changing your password at Accor Hotel";
+                string pass = Random();
+                message.Body = "Your new password is: " + pass + " \nPlease do not share your password with anyone.Thank you !";
+                message.IsBodyHtml = true;
+                s.mat_khau = pass;
+                
+                smtp.Send(message);
+                db.SaveChanges();
+                ViewBag.success = " We have sent a new password to your email, please check!";
+                return View("Login");
+            }
+            else
+            {
+
+                ViewBag.thongbao = " The email address is incorrect !";
+                return View("login");
+            }
+        }
+
+        private string Random()
+        {
+            string random = "";
+            Random ran = new Random();
+            for (int j = 1; j < 2; j++)
+            {
+                random += ran.Next(999999).ToString();
+            }
+            return random;
+        }
         public ActionResult SuaPhieuDatPhong(int? id)
         {
             tblKhachHang kh = new tblKhachHang();
