@@ -200,6 +200,7 @@ namespace DATN_QLKS.Controllers.Home
                 if (obj != null)
                 {
                     Session["KH"] = obj;
+                    Session["Email"] = obj.mail;
                     return RedirectToAction("BookRoom", "Home");
                 }
                 else
@@ -214,7 +215,7 @@ namespace DATN_QLKS.Controllers.Home
         {
             Session["KH"] = null;
             tblKhachHang kh = (tblKhachHang)Session["KH"];
-            if (kh != null)
+            if (kh != null)                
                 return RedirectToAction("BookRoom", "Home");
             return View();
         }

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using Newtonsoft.Json;
+using System.Net.Mail;
 
 namespace DATN_QLKS.Controllers.Home
 {
@@ -206,6 +207,8 @@ namespace DATN_QLKS.Controllers.Home
             else
             {
                 tblPhieuDatPhong tgd = new tblPhieuDatPhong();
+                tblKhachHang kh = (tblKhachHang)Session["KH"];
+                var Email = HttpContext.Session["Email"];
                 List<int> ds = JsonConvert.DeserializeObject<List<int>>(ma_phong);
                 tgd.ma_kh = ma_kh;
                 tgd.ma_tinh_trang = 1;
@@ -218,6 +221,27 @@ namespace DATN_QLKS.Controllers.Home
                     {
                         tgd.ma_phong = ds[i];
                         db.tblPhieuDatPhongs.Add(tgd);
+
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                        NetworkCred.UserName = "longtrunghieu2000hehe@gmail.com";
+                        NetworkCred.Password = "newoaxxmyouvasqv";
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+
+                        MailMessage message = new MailMessage();
+                        message.From = new MailAddress("longtrunghieu2000hehe@gmail.com");
+                        message.To.Add(new MailAddress(Email.ToString()));
+                        message.Subject = "Khách sạn Accor Hotel";
+
+                        message.Body = "Bạn đã đặt phòng thành công. Cảm ơn bạn đã đặt phòng tại Accor Hotel. Vui lòng tới khách sạn nhận phòng đúng thời gian đã đặt !";
+                        message.IsBodyHtml = true;
+
+                        smtp.Send(message);
+
                         db.SaveChanges();
                         ViewBag.Result = "success";
                     }

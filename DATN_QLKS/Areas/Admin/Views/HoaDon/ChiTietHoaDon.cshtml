@@ -66,20 +66,19 @@
                             <div class="form-group">
                                 @Html.Label("Ngày trả phòng", htmlAttributes: new { @class = "control-label col-md-8" })
                                 <div class="col-md-10">
-                                    @Html.TextBox("ngay_tra_phong", (String)ViewBag.time_now, new { @class = "form-control", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.ngay_tra_phong, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.ngay_tra_phong, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.Label("Tiền Phòng", htmlAttributes: new { @class = "control-label col-md-8" })
                                 <div class="col-md-10">
-                                    @Html.TextBox("tien_phong", (Double)ViewBag.tien_phong, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.EditorFor(model => model.tien_phong, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.Label("Tiền dịch vụ", htmlAttributes: new { @class = "control-label col-md-8" })
+                                @Html.Label("Phụ thu", htmlAttributes: new { @class = "control-label col-md-8" })
                                 <div class="col-md-10">
-                                    @Html.TextBox("tien_dich_vu", (Double)ViewBag.tien_dich_vu, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.EditorFor(model => model.phu_thu, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 </div>
                             </div>
                         </div>
@@ -119,7 +118,7 @@
                                                         @Html.DisplayFor(modelItem => ds[i].tblDichVu.ten_dv)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => ds[i].tblDichVu.gia)
+                                                        @Html.DisplayFor(modelItem => ds[i].tblDichVu.gia) VND
                                                     </td>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => ds[i].tblDichVu.don_vi)
@@ -128,7 +127,7 @@
                                                         @Html.DisplayFor(modelItem => ds[i].so_luong)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => tt[i])
+                                                        @Html.DisplayFor(modelItem => tt[i]) VND
                                                     </td>
                                                 </tr>
                                             }
@@ -145,26 +144,19 @@
                     </div>
 
                 </div>
+                
                 <hr />
-                @*<div class="form-group">
-                        @Html.Label("Phụ thu", htmlAttributes: new { @class = "control-label col-md-8" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.phu_thu, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.phu_thu, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
-
                 <div class="form-group">
-                    @Html.Label("Tổng tiền", htmlAttributes: new { @class = "control-label col-md-8" })
+                    @Html.Label("Tổng tiền (VND)", htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="col-md-10">
-                        @Html.TextBox("tong_tien", (Double)ViewBag.tong_tien, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.EditorFor(model => model.tong_tien, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.tblTinhTrangHoaDon.mo_ta, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.TextBoxFor(model => model.tblTinhTrangHoaDon.mo_ta, new { @class = "form-control", @readonly = "readonly" }) 
                     </div>
                 </div>
             }
