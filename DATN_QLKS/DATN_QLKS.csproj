@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\Controllers\TangController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TinNhanController.cs" />
     <Compile Include="Areas\Admin\Models\KhachHang.cs" />
     <Compile Include="Controllers\Home\AccountController.cs" />
     <Compile Include="Controllers\Home\BangGiaController.cs" />
@@ -454,6 +455,8 @@
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Index\FindRoom.cshtml" />
     <Content Include="Areas\Admin\Views\Index\CaNhan.cshtml" />
+    <Content Include="Areas\Admin\Views\TinNhan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TinNhan\Details.cshtml" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
