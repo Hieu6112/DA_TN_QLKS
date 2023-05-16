@@ -53,21 +53,16 @@
                             }
 
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ho_ten)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mail)
-                            <strong>
+                        <td>                           
                                 @if (item.ma_kh == null)
                                 {
                                     @item.mail
                                 }
                                 else
                                 {
-                                    @item.tblKhachHang.mail
+                                    @Html.DisplayFor(modelItem => item.mail)
                                 }
-                            </strong>
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.noi_dung)

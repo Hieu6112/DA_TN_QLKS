@@ -31,6 +31,15 @@
         color: #19191a;
         line-height: 36px;
     }
+    .col-md-push-1 {
+        left: 0% !important;
+    }
+    .form-group {
+        padding-left: 90px !important;
+    }
+    .col-md-10 {
+        width: 100% !important;
+    }
 </style>
 
 <header id="gtco-header" class="gtco-cover gtco-cover-md g-header" role="banner" style="background-image: url(/Content/Home/images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
@@ -42,10 +51,10 @@
     <div class="gtco-container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2 class="cursive-font primary-color">Rooms Details</h2>
+                <h2 class="cursive-font primary-color">Chi tiết phòng</h2>
                 <div class="">
-                    <a href="">Rooms</a>
-                    <span>> Rooms Details</span>
+                    <a href="">Loại phòng</a>
+                    <span>>Chi tiết phòng</span>
                 </div>
             </div>
 
@@ -100,7 +109,6 @@
                                             </div><br />
 
                                             <div class="col-md-10">
-                                                <h3>Vị trí: Tầng 1</h3>
                                                 @Html.ValidationMessageFor(model => model.ti_le_phu_thu, "", new { @class = "text-danger" })
                                             </div><br />
 
@@ -123,5 +131,5 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "ThongTinPhong")
+    @Html.ActionLink("Back to List", "RoomList")
 </p>
