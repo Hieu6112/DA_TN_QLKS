@@ -237,7 +237,7 @@ namespace DATN_QLKS.Controllers.Home
                         message.To.Add(new MailAddress(Email.ToString()));
                         message.Subject = "Khách sạn Accor Hotel";
 
-                        message.Body = "Bạn đã đặt phòng thành công. Cảm ơn bạn đã đặt phòng tại Accor Hotel. Vui lòng tới khách sạn nhận phòng đúng thời gian đã đặt !";
+                        message.Body = "Bạn đã đặt phòng thành công. " + "Cảm ơn bạn đã đặt phòng tại Accor Hotel. " + "Vui lòng tới khách sạn nhận phòng đúng thời gian đã đặt !";
                         message.IsBodyHtml = true;
 
                         smtp.Send(message);
